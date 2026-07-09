@@ -1,153 +1,100 @@
 # 🏥 Patient Management System
 
-A simple **Patient Management System** built with **Python**, **SQLite3**, and **Object-Oriented Programming (OOP)**.
-
-This project was created to practice database operations (CRUD) and improve backend development skills.
-
----
+A simple Patient Management System built with **Python** and **SQLite**. This project was created to practice object-oriented programming (OOP), database operations, and SQL fundamentals.
 
 ## ✨ Features
 
 - ➕ Add new patients
 - 📋 Show all patients
 - 🔍 Search patients by name
+- 🦠 Search patients by disease
 - ✏️ Update patient information
 - ❌ Delete patients
-- 🗓️ Automatic Persian (Jalali) visit date
-- 💾 Data stored in SQLite database
-- 🌐 Supports Persian (UTF-8) text
-
----
+- 📊 Show total number of patients
+- 📈 Generate disease reports using `GROUP BY`
+- 🕒 Display the last 5 registered patients
+- 🔤 Sort patients by name
+- 📅 Sort patients by visit date
 
 ## 🛠️ Technologies Used
 
 - Python 3
 - SQLite3
 - jdatetime
-- Object-Oriented Programming (OOP)
 
----
+## 📁 Project Structure
 
-## 📂 Project Structure
-
-```text
-Patient Management System/
+```
+Patient-Management-System/
 │
-├── main.py          # Main menu and user interaction
-├── manager.py       # Database operations (CRUD)
-├── patient.py       # Patient class
-├── database.py      # Database connection and table creation
-├── patients.db      # SQLite database
+├── main.py
+├── manager.py
+├── patient.py
+├── database.py
+├── patients.db
 └── README.md
 ```
-
----
 
 ## 🚀 Getting Started
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/patient-management-system.git
+git clone https://github.com/your-username/Patient-Management-System.git
 ```
 
-### 2. Install the required package
+### 2. Navigate to the project folder
+
+```bash
+cd Patient-Management-System
+```
+
+### 3. Install the required package
 
 ```bash
 pip install jdatetime
 ```
 
-### 3. Run the project
+### 4. Run the application
 
 ```bash
 python main.py
 ```
 
----
+## 📚 SQL Concepts Practiced
 
-## 📋 Menu
+- CREATE TABLE
+- INSERT
+- SELECT
+- UPDATE
+- DELETE
+- WHERE
+- LIKE
+- ORDER BY
+- LIMIT
+- COUNT()
+- GROUP BY
 
-```text
-========== Patient Management System ==========
+## 🎯 Learning Goals
 
-1. Add Patient
-2. Show All Patients
-3. Search Patient
-4. Update Patient
-5. Delete Patient
-6. Exit
-```
+This project was developed to strengthen:
 
----
-
-## 🗄️ Database Schema
-
-| Column      | Type                  |
-| ----------- | --------------------- |
-| id          | INTEGER (Primary Key) |
-| name        | TEXT                  |
-| phone       | TEXT                  |
-| disease     | TEXT                  |
-| visit_date  | TEXT                  |
-| description | TEXT                  |
-
----
-
-## 📸 Example
-
-```text
-========== Patient Management System ==========
-
-1. Add Patient
-2. Show All Patients
-3. Search Patient
-4. Update Patient
-5. Delete Patient
-6. Exit
-
-Enter a number: 2
-
-ID: 1
-Name: Ali
-Phone: 09123456789
-Disease: HPV
-Date: 1405-04-15
-Description: First visit
-```
-
----
-
-## 📚 Concepts Practiced
-
-- Python Classes
-- Object-Oriented Programming
-- SQLite3
-- CRUD Operations
-- SQL Queries
-- Database Design
-- Functions & Modules
-- Error Handling
-
----
+- Python programming
+- Object-Oriented Programming (OOP)
+- SQLite database management
+- CRUD operations
+- SQL query writing
+- Clean code and refactoring
 
 ## 🔮 Future Improvements
 
-- Search by phone number
-- Search by disease
-- Sort patients
-- Statistics dashboard
+- Export data to Excel or CSV
+- Login system
 - Data validation
-- Backup & Restore
-- GUI with Tkinter or PySide
-- Doctor and appointment management
-- Foreign Keys & Relationships
+- Backup and restore database
+- Graphical User Interface (GUI)
+- Web version using Django
 
----
+## 📄 License
 
-## 👨‍💻 Author
-
-Mohammad
-
-Backend Developer Student
-
-Learning Python, SQL, and Backend Development 🚀
+This project is for learning and educational purposes.

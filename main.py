@@ -14,7 +14,13 @@ while True:
 3. Search Patient
 4. Update Patient
 5. Delete Patient
-6. Exit
+6. Statistics  
+7. Disease Report  
+8. Last 5 Patients 
+9. Search by Disease     
+10. Sort By Name
+11. Sort By Visit Date                                        
+12. Exit
 
 """)
     choice = input("Enter a number:")
@@ -50,7 +56,21 @@ while True:
             print("Invalid input.")
             continue
         manager.delete_patient(patient_id)
+
     elif choice == "6":
+        manager.total_patients()
+    elif choice == "7":
+        manager.disease_report()
+    elif choice == "8":
+        manager.last_5_patients()
+    elif choice == "9":
+        disease_name = input("Disease name: ")
+        manager.search_by_disease(disease_name)
+    elif choice == "10":
+        manager.sort_name()
+    elif choice == "11":
+        manager.sort_by_visit_date()
+    elif choice == "12":
         print("Goodbye!")
         break
     else:

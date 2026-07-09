@@ -18,6 +18,15 @@ class PatientManager:
         connection.commit()
         connection.close()
 
+    def print_patient(self, patient):
+        print(f"ID: {patient[0]}")
+        print(f"Name: {patient[1]}")
+        print(f"Phone: {patient[2]}")
+        print(f"Disease: {patient[3]}")
+        print(f"Date: {patient[4]}")
+        print(f"Description: {patient[5]}")
+        print()
+
     def show_all_patients(self):
         connection, cursor = get_connection()
         sql = """SELECT * FROM patients"""
@@ -28,32 +37,23 @@ class PatientManager:
             connection.close()
             return
         for row in records:
-            print(f"ID: {row[0]}")
-            print(f"Name: {row[1]}")
-            print(f"Phone: {row[2]}")
-            print(f"Disease: {row[3]}")
-            print(f"Date: {row[4]}")
-            print(f"Description: {row[5]}")
-            print()
+            self.print_patient(row)
         connection.close()
 
     def search_patient(self, name):
         connection, cursor = get_connection()
-        cursor.execute("""SELECT * FROM patients WHERE name=?""", (name,))
+        cursor.execute(
+            """SELECT * FROM patients WHERE name LIKE ?""", ("%" + name + "%",)
+        )
 
-        row = cursor.fetchone()
-        if not row:
+        rows = cursor.fetchall()
+        if len(rows) == 0:
             print("Patient not found.")
             connection.close()
             return
         else:
-            print(f"ID: {row[0]}")
-            print(f"Name: {row[1]}")
-            print(f"Phone: {row[2]}")
-            print(f"Disease: {row[3]}")
-            print(f"Date: {row[4]}")
-            print(f"Description: {row[5]}")
-            print()
+            for patient in rows:
+                self.print_patient(patient)
 
         connection.close()
 
@@ -96,4 +96,76 @@ class PatientManager:
         else:
             connection.commit()
             print("Patient updated successfully.")
+        connection.close()
+
+    def total_patients(self):
+        connection, cursor = get_connection()
+        cursor.execute("""SELECT COUNT(*) FROM patients""")
+        number = cursor.fetchone()
+        print("=" * 30)
+        print(f"Total Patients: {number[0]}")
+        print("=" * 30)
+        connection.close()
+
+    def disease_report(self):
+        connection, cursor = get_connection()
+        cursor.execute(
+            """SELECT disease,COUNT(*) FROM  patients GROUP BY disease ORDER BY COUNT(*) DESC; """
+        )
+        rows = cursor.fetchall()
+        print("=" * 30)
+        print("Disease Report")
+        for item in rows:
+            print(f"{item[0]}= {item[1]}")
+        print("=" * 30)
+        connection.close()
+
+    def last_5_patients(self):
+        connection, cursor = get_connection()
+        cursor.execute("SELECT * FROM patients ORDER BY id DESC LIMIT 5;")
+        row = cursor.fetchall()
+        if not row:
+            print("No patients found.")
+            connection.close()
+            return
+        for patient in row:
+            self.print_patient(patient)
+        connection.close()
+
+    def search_by_disease(self, disease):
+        connection, cursor = get_connection()
+        cursor.execute(
+            "SELECT * FROM patients WHERE disease LIKE ?", ("%" + disease + "%",)
+        )
+        row = cursor.fetchall()
+        if not row:
+            print("No patients found.")
+            connection.close()
+            return
+        for patient in row:
+            self.print_patient(patient)
+        connection.close()
+
+    def sort_name(self):
+        connection, cursor = get_connection()
+        cursor.execute("SELECT * FROM patients ORDER BY name ASC;")
+        row = cursor.fetchall()
+        if not row:
+            print("No patients found.")
+            connection.close()
+            return
+        for patient in row:
+            self.print_patient(patient)
+        connection.close()
+
+    def sort_by_visit_date(self):
+        connection, cursor = get_connection()
+        cursor.execute("SELECT * FROM patients ORDER BY visit_date DESC;")
+        row = cursor.fetchall()
+        if not row:
+            print("No patients found.")
+            connection.close()
+            return
+        for patient in row:
+            self.print_patient(patient)
         connection.close()
